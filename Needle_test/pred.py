@@ -62,7 +62,7 @@ def load_model_and_tokenizer(path, device):
 
 if __name__ == '__main__':
     with open('config-pred.yaml', 'r') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
+        config = yaml.load(file, Loader=yaml.SafeLoader)
 
     model_provider = config['model']['model_provider']
     model_name = config['model']['model_name']

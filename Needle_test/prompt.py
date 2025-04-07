@@ -295,7 +295,7 @@ class Prompter:
 
 if __name__ == '__main__':
     with open('config-prompt.yaml', 'r') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
+        config = yaml.load(file, Loader=yaml.SafeLoader)
 
     ht = Prompter(
         needle=config['prompt']['needle'],

@@ -69,7 +69,7 @@ def get_user_template(input, prediction, reference, criteria):
 
 if __name__ == '__main__':
     with open('config-eval.yaml', 'r') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
+        config = yaml.load(file, Loader=yaml.SafeLoader)
 
     pred_dir = config['pred_dir']
     save_dir = config['save_dir']
