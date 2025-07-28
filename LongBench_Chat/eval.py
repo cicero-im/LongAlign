@@ -4,7 +4,6 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from transformers.generation.utils import GenerationConfig
 import torch
 import numpy as np
-import random
 import codecs
 import argparse
 from copy import deepcopy
@@ -12,6 +11,8 @@ from tqdm import tqdm
 import traceback
 import re
 from llama_flash_attn_monkey_patch import replace_llama_attn_with_flash_attn
+import secrets
+
 replace_llama_attn_with_flash_attn()
 
 os.makedirs("predictions", exist_ok=True)
@@ -58,7 +59,7 @@ def seed_everything(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     np.random.seed(seed)
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     torch.cuda.manual_seed_all(seed)

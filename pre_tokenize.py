@@ -1,12 +1,13 @@
 from transformers import AutoTokenizer, AutoModel, LlamaTokenizer
 import copy
 import torch
-import json, os, random
+import json, os
 import multiprocessing
 from tqdm import tqdm
 import traceback
 import numpy as np
 import argparse
+import secrets
 
 BEGIN_TOKEN, END_TOKEN = '<<BEGIN>>', '<<END>>'
 max_length = 65536
@@ -140,7 +141,7 @@ def main(args):
     elif args.datanum == '5k':
         lines = short + long[:5000]
     lines = short + long
-    random.shuffle(lines)
+    secrets.SystemRandom().shuffle(lines)
     total_lines = len(lines)
 
     pool = multiprocessing.Pool(processes=PROC_NUM)
